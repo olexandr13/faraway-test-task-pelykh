@@ -2,7 +2,7 @@ import contract from '../../clients/quicknode';
 import { faker } from '@faker-js/faker';
 import backend from '../../clients/backend';
 
-describe('Backend', () => {
+describe('Collection tests', () => {
   let collectionAddress: string;
   beforeAll(async () => {
 
