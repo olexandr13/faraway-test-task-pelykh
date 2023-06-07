@@ -14,7 +14,7 @@ const contract = new ethers.Contract(contractData.address, contractData.abi, wal
 
 class ContractActions {
   collectionAddress: string | undefined;
-  collectionLogs: any;
+  private collectionLogs: any;
 
   constructor() { }
 
@@ -42,7 +42,6 @@ class ContractActions {
   
         const parsedLog = contract.interface.parseLog(log);
         if (parsedLog.name === 'CollectionCreated') {
-          console.warn('returning; ', parsedLog.args.collection);
           collectionAddress = parsedLog.args.collection;
         }
       } catch (e) {
@@ -53,11 +52,13 @@ class ContractActions {
   }
 }
 
+export default new ContractActions();
 
-(async () => {
-  const contract = new ContractActions();
-  const collectionAddress = await contract.createCollection(faker.word.noun(), faker.string.alpha({length: 3, casing: 'upper'}), faker.internet.url());
-  console.log('Collection address: ', collectionAddress);
-  await contract.mintNFT('0x476348FdCab51b5F4cC24a38512A3F8F0abdCD8E', faker.number.int().toString());
-})();
+
+// (async () => {
+//   const contract = new ContractActions();
+//   const collectionAddress = await contract.createCollection(faker.word.noun(), faker.string.alpha({length: 3, casing: 'upper'}), faker.internet.url());
+//   console.log('Collection address: ', collectionAddress);
+//   await contract.mintNFT('0x476348FdCab51b5F4cC24a38512A3F8F0abdCD8E', faker.number.int().toString());
+// })();
 
