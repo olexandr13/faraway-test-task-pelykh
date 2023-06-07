@@ -1,0 +1,19 @@
+{
+  "name": "faraway-qa-test-task-pelykh",
+  "version": "1.0.0",
+  "description": "This is test task by Oleksandr Pelykh for Faraway",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleksandr Pelykh",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "@types/node": "^20.2.5",
+    "axios": "^1.4.0",
+    "dotenv": "^16.1.4",
+    "ethers": "^5.7.2",
+    "faker": "^6.6.6"
+  }
+}
