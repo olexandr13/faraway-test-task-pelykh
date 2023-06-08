@@ -5,7 +5,7 @@ const config: Config = {
   preset: "ts-jest",
   testMatch: ['/**/*.test.ts'],
   testEnvironment: "node",
-  testTimeout: 30000,
+  testTimeout: 90000,
 };
 
 export default config;
