@@ -1,0 +1,56 @@
+name: Contract tests
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      frontend-image:
+        description: 'Frontend image registry path'
+        default: 'evercoinx/faraway:nft-collection-deployer-frontend'
+        required: false
+        type: string
+      backend-image:
+        description: 'Backtend image registry path'
+        default: 'evercoinx/faraway:nft-collection-deployer-backend'
+        required: false
+        type: string
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run frontend container
+        run: docker run -p 3000:3000 -d ${{ inputs.frontend-image }}
+
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run backend container
+        run: docker run -p 4000:4000 -d ${{ inputs.backend-image }}
+
+  tests:
+    needs: [frontend, backend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 3
