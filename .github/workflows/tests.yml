@@ -36,6 +36,9 @@ jobs:
   tests:
     needs: [frontend, backend]
     runs-on: ubuntu-latest
+    env:
+      QUICKNODE_TOKEN: ${{ secrets.QUICKNODE_TOKEN }}
+      WALLET_PRIVATE_KEY: ${{ secrets.WALLET_PRIVATE_KEY }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
