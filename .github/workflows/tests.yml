@@ -2,7 +2,6 @@ name: Contract tests
 
 on:
   workflow_dispatch:
-  workflow_call:
     inputs:
       frontend-image:
         description: 'Frontend image registry path'
