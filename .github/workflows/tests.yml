@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-        - name: Run frontend container
+      - name: Run frontend container
         run: docker run -p 3000:3000 -d ${{ inputs.frontend-image }}
       - name: Run backend container
         run: docker run -p 4000:4000 -d ${{ inputs.backend-image }}
