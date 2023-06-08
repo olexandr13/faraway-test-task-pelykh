@@ -7,12 +7,12 @@ on:
       frontend-image:
         description: 'Frontend image registry path'
         default: 'evercoinx/faraway:nft-collection-deployer-frontend'
-        required: false
+        required: true
         type: string
       backend-image:
         description: 'Backtend image registry path'
         default: 'evercoinx/faraway:nft-collection-deployer-backend'
-        required: false
+        required: true
         type: string
 
 jobs:
