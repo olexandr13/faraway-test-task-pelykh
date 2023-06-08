@@ -16,7 +16,6 @@ on:
 
 jobs:
   tests:
-    needs: [frontend, backend]
     runs-on: ubuntu-latest
     env:
       QUICKNODE_TOKEN: ${{ secrets.QUICKNODE_TOKEN }}
