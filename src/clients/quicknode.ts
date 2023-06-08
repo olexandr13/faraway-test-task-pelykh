@@ -53,12 +53,3 @@ class ContractActions {
 }
 
 export default new ContractActions();
-
-
-// (async () => {
-//   const contract = new ContractActions();
-//   const collectionAddress = await contract.createCollection(faker.word.noun(), faker.string.alpha({length: 3, casing: 'upper'}), faker.internet.url());
-//   console.log('Collection address: ', collectionAddress);
-//   await contract.mintNFT('0x476348FdCab51b5F4cC24a38512A3F8F0abdCD8E', faker.number.int().toString());
-// })();
-
