@@ -14,25 +14,6 @@ on:
         required: true
         type: string
 
-jobs:
-  frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run frontend container
-        run: docker run -p 3000:3000 -d ${{ inputs.frontend-image }}
-
-  backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run backend container
-        run: docker run -p 4000:4000 -d ${{ inputs.backend-image }}
-
   tests:
     needs: [frontend, backend]
     runs-on: ubuntu-latest
@@ -44,6 +25,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+
+      - name: Run backend container
+        run: docker run -p 4000:4000 -d ${{ inputs.backend-image }}
+      - name: Run frontend container
+        run: docker run -p 3000:3000 -d ${{ inputs.frontend-image }}
+
       - name: Install dependencies
         run: npm ci
       - name: integration tests
